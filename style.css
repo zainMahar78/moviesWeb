@@ -1,8 +1,34 @@
 #input{
-    /* border: 2px solid red; */
-    padding: 2px;
+    border: none;
+    padding-right: 20px;
     width: 100%;
     margin: 5px;
     border-radius: 15px;
-    height: 35px;
+    height: 45px;
+    position: relative;
+    
+    
+}
+#searchBtn{
+    color: aliceblue;
+    position: absolute;
+    right: -4px;
+    top: 206px;
+    border: none;
+    border-radius: 15px;
+    height: 45px;
+    /* background-color: #A64F4F; */
+    background-image: linear-gradient(orange 10%, blue 30%, red 60% );
+}
+#divForPoster{
+    background-image: linear-gradient(rgba(0,0,255,0.5)), url("americanPsycho.webp");
+    background-color: aqua;
+    height: 400px;
+    background-size: contain;
+    /* background-repeat: no-repeat; */
+}
+#divForText{
+    color: white;
+    
+    padding: 40px;
 }
