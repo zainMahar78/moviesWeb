@@ -1,21 +1,21 @@
 #input{
     border: none;
     padding-right: 20px;
-    width: calc(100% - 30px);
-    margin: 5px;
+    /* margin: 0px 15px; */
+    margin-right: 15px;
+    margin-left: 15px;
+    width: calc(100% - 60px);  
     border-radius: 15px;
     height: 45px;
     position: relative;
-    margin: 0px 15px;
+    
     
 }
 #searchBtn{
     color: aliceblue;
     position: absolute;
-    right: 15px;
-    /* transform: translate(-4px, 0px); */
-    transform: translateX();
-    /* top: 206px; */
+    right: 31px;
+    transform: translateY(1px);
     border: none;
     border-radius: 15px;
     height: 45px;
@@ -29,10 +29,15 @@
     height: 400px;
     width: 100%;
     background-size: contain;
-    /* background-repeat: no-repeat; */
+   
 }
 #divForText{
     color: white;
     
     padding: 40px;
+}
+.movie_img{
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
 }
