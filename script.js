@@ -19,19 +19,34 @@ function toShowResult() {
         console.log(data);
         console.log(data.results[0]);
         console.log();
+        divForResult.classList.remove("hidden");
         const poster_path = data.results[0].poster_path;
-            const divForCadsToDisplayResult = document.createElement("div");
-            divForCadsToDisplayResult.classList.add("card", "d-flex", "flex-row", "cardDiv");
-           
-            divForCadsToDisplayResult.innerHTML = `<img src="https://image.tmdb.org/t/p/w500/${poster_path}" class="card-img-top movie_img" alt="...">
+        const backdrop_path = data.results[0].backdrop_path;
+        const divForCadsToDisplayResult = document.createElement("div");
+        divForCadsToDisplayResult.classList.add("card", "d-flex", "flex-row", "cardDiv");
+        divForCadsToDisplayResult.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${poster_path}" class="card-img-top movie_img">
         <div class="card-body">
         <h5 class="card-title"><strong>${data.results[0].original_title}</strong></h5>
         <p id="colorForReleaseDate">${data.results[0].release_date}</p>
-        <p class="card-text overView">${data.results[0].overview}</p>
+        <p class="card-text overView">${data.results[0].overview}</p> 
         </div>`;
-            divForResult.appendChild(divForCadsToDisplayResult);
-            console.log();
-            console.log(data.results[0].overview);
        
+        divForResult.appendChild(divForCadsToDisplayResult);
+ const img = document.querySelector(".movie_img");
+        img.addEventListener("click", ()=>{
+
+            fullInfo(poster_path);
+        });
+
     })
+}
+backBtn.addEventListener("click", () => {
+    divForPoster.classList.remove("hidden");
+    divForResult.classList.add("hidden");
+    backBtn.classList.add("hidden");
+});
+function fullInfo(poster_path) {
+    divForResult.classList.add("hidden");
+    const divForFullInfo = document.createElement("div");
+    divForFullInfo.style.backgroundImage = 
 }
