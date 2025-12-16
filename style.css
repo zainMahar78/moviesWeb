@@ -63,6 +63,19 @@
 }
 #divForResult{
     position: relative;
+    color: white;
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+}
+#divForResult::before {
+    content: "";
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    z-index: -1;
 }
 #backBtn {
     position: absolute;
@@ -75,4 +88,13 @@
     height: 50px;
     width: 100px;
     background-image: linear-gradient(blue 0%, red 30%, black 70%);
+}
+#divForFullInfo{
+   /* min-height: 500px; */
+   height: 700px;
+    width: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(blue 0%, white 90%);
+    /* object-fit: cover; */
 }
