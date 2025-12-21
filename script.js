@@ -41,7 +41,7 @@ function toShowResult() {
       divForResult.appendChild(divForCadsToDisplayResult);
       const img = document.querySelector(".movie_img");
       img.addEventListener("click", () => {
-        fullInfo(backdrop_path);
+        fullInfo(poster_path, backdrop_path, data.results[0].original_title, data.results[0].release_date, data.results[0].overview);
       });
     });
 }
@@ -50,10 +50,28 @@ backBtn.addEventListener("click", () => {
   divForResult.classList.add("hidden");
   backBtn.classList.add("hidden");
 });
-function fullInfo(poster_path) {
+function fullInfo(poster_path, backdrop_path, data, release_date, overView) {
   divForResult.classList.add("hidden");
   const divForFullInfo = document.createElement("div");
   divForFullInfo.id = "divForFullInfo";
-  divForFullInfo.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${poster_path})`;
+  divForFullInfo.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${backdrop_path})`;
+ 
+  const imgWrapper = document.createElement("div");
+  imgWrapper.classList.add("imgWrapper");
+  const img = document.createElement("img");
+  img.src = `https://image.tmdb.org/t/p/w500${poster_path}`;
+  imgWrapper.appendChild(img);
+  divForFullInfo.appendChild(imgWrapper);
+  const divText = document.createElement("div");
+  divText.classList.add("divText");
+  const h1 = document.createElement("h1");
+  h1.innerText = data+"("+release_date+")";
+  divText.appendChild(h1);
+  const p = document.createElement("p");
+  p.innerHTML = `<h5>Overview</h5>${overView}`;
+  
+  divText.appendChild(p);
+  divForFullInfo.appendChild(divText);
+  
   document.body.appendChild(divForFullInfo);
 }
