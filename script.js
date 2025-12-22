@@ -3,6 +3,7 @@ const divForResult = document.getElementById("divForResult");
 const divForPoster = document.getElementById("divForPoster");
 const searchBtn = document.getElementById("searchBtn");
 const backBtn = document.getElementById("backBtn");
+const divForFullInfo = document.getElementById("divForFullInfo");
 searchBtn.addEventListener("click", toShowResult);
 function toShowResult() {
   const url = `https://api.themoviedb.org/3/search/movie?api_key=8ee2e0565d4c1fc23a59aadbfbcf2278&query=${input.value}`;
@@ -18,9 +19,6 @@ function toShowResult() {
     .then((data) => {
       divForResult.innerHTML = "";
       backBtn.classList.remove("hidden");
-      console.log(data);
-      console.log(data.results[0]);
-      console.log();
       divForResult.classList.remove("hidden");
       const poster_path = data.results[0].poster_path;
       const backdrop_path = data.results[0].backdrop_path;
@@ -40,8 +38,11 @@ function toShowResult() {
 
       divForResult.appendChild(divForCadsToDisplayResult);
       const img = document.querySelector(".movie_img");
+      const langCode = data.results[0].original_language;
+      const langName = new Intl.DisplayNames(["en"], {type: "language"}).of(langCode); 
       img.addEventListener("click", () => {
-        fullInfo(poster_path, backdrop_path, data.results[0].original_title, data.results[0].release_date, data.results[0].overview);
+        backBtn.classList.add("hidden");
+        fullInfo(poster_path, backdrop_path, data.results[0].original_title, data.results[0].release_date, data.results[0].overview, langName);
       });
     });
 }
@@ -50,10 +51,12 @@ backBtn.addEventListener("click", () => {
   divForResult.classList.add("hidden");
   backBtn.classList.add("hidden");
 });
-function fullInfo(poster_path, backdrop_path, data, release_date, overView) {
+function fullInfo(poster_path, backdrop_path, data, release_date, overView, langName) {
   divForResult.classList.add("hidden");
-  const divForFullInfo = document.createElement("div");
-  divForFullInfo.id = "divForFullInfo";
+  
+  divForFullInfo.classList.remove("hidden");
+  backBtn.classList.remove("hidden");
+  divForFullInfo.innerHTML = "";
   divForFullInfo.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${backdrop_path})`;
  
   const imgWrapper = document.createElement("div");
@@ -65,10 +68,10 @@ function fullInfo(poster_path, backdrop_path, data, release_date, overView) {
   const divText = document.createElement("div");
   divText.classList.add("divText");
   const h1 = document.createElement("h1");
-  h1.innerText = data+"("+release_date+")";
+  h1.innerText = data+"("+release_date.split("-")[0]+")";
   divText.appendChild(h1);
   const p = document.createElement("p");
-  p.innerHTML = `<h5>Overview</h5>${overView}`;
+  p.innerHTML = `<p>${release_date}</br><strong>Original Language: </strong>${langName}</p><h5>Overview</h5>${overView}`;
   
   divText.appendChild(p);
   divForFullInfo.appendChild(divText);

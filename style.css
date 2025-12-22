@@ -53,11 +53,11 @@
     overflow: hidden;
 }
 .hidden {
-    display: none;
+    display: none !important;
 }
 #backBtn {
-    position: absolute;
-    right: 5px;
+    /* position: absolute; */
+    /* right: 5px; */
     /* margin: 20px; */
     border: none;
     color: white;
@@ -75,7 +75,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     border: 2px solid black;
-    /* background-image: linear-gradient(blue 0%, white 90%); */
     display: flex;
     flex-direction: row;
     /* align-items: flex-start; */
