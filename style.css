@@ -55,10 +55,13 @@
 .hidden {
     display: none !important;
 }
+#mainDiv {
+    position: relative;
+}
 #backBtn {
-    /* position: absolute; */
-    /* right: 5px; */
-    /* margin: 20px; */
+    position: absolute;
+    right: 5px;
+    margin-top: 5px;
     border: none;
     color: white;
     font-size: large;
