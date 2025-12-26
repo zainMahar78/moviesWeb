@@ -19,10 +19,11 @@ function toShowResult() {
       return res.json();
     })
     .then((data) => {
+      console.log(data.results[0].genre_ids);
       divForResult.innerHTML = "";
       backBtn.classList.remove("hidden");
       divForResult.classList.remove("hidden");
-      data.results.forEach((movie) => {
+      data.results.forEach((movie, index) => {
         const poster_path = movie.poster_path;
         const backdrop_path = movie.backdrop_path;
         const divForCadsToDisplayResult = document.createElement("div");
@@ -33,15 +34,15 @@ function toShowResult() {
           "flex-row",
           "cardDiv"
         );
-        divForCadsToDisplayResult.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${poster_path}" class="card-img-top movie_img">
+        divForCadsToDisplayResult.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${poster_path}" class="card-img-top movie_img" id=movie_img${index}>
         <div class="card-body">
-        <h5 class="card-title"><strong>${data.results[0].original_title}</strong></h5>
-        <p id="colorForReleaseDate">${data.results[0].release_date}</p>
-        <p class="card-text overView">${data.results[0].overview}</p> 
+        <h5 class="card-title"><strong>${movie.original_title}</strong></h5>
+        <p id="colorForReleaseDate">${movie.release_date}</p>
+        <p class="card-text overView">${movie.overview}</p> 
         </div>`;
-
+        
         divForResult.appendChild(divForCadsToDisplayResult);
-        const img = document.querySelector(".movie_img");
+        const img = document.querySelector(`#movie_img${index}`);
         const langCode = movie.original_language;
         const langName = new Intl.DisplayNames(["en"], { type: "language" }).of(
           langCode
@@ -50,9 +51,9 @@ function toShowResult() {
           fullInfo(
             poster_path,
             backdrop_path,
-            data.results[0].original_title,
-            data.results[0].release_date,
-            data.results[0].overview,
+            movie.original_title,
+            movie.release_date,
+            movie.overview,
             langName
           );
         });
